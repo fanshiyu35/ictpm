@@ -86,6 +86,6 @@ Search format: `"FirstName LastName"` + transport. Notable real-person collision
 ## 5. Iron-number consistency
 
 - Four editions 2022/2023/2024/2025, one per year — on homepage and each edition page.
-- ICTPM 2023 TPC reviewed 41 papers — stated on /2023, /2023/keynote-yanxi-liu.html, /tpc.
+- ICTPM 2023 edition: 45 full-paper submissions (26 accepted) — stated on /2023, /2023/keynote-yanxi-liu.html. /tpc states Liu's personal TPC record: 10/10/11/10 across 2022–2025 = 41 (D-5 confirmation letter口径).
 - Dr. Yanxi Liu = ICTPM 2023 TPC member + keynote speaker, lecture "Transport Ranking Stability" — stated on /2023, /tpc, keynote page.
 - 11 invited talks, 6 countries (DE, NL, SE, IT, JP, US), 2019–2025, all hosts private-sector — /invited-talks.
