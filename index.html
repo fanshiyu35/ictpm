@@ -1,48 +1,946 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>ICTPM — International Conference on Transport Planning and Mobility</title>
-<meta name="description" content="Annual international conference on transport planning and mobility. Editions 2023–2026. Most recent edition: 18 June 2026.">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#33475c">
+  <title>ICTPM | International Conference on Transport Planning and Mobility</title>
+  <style>
+    :root {
+      --navy: #33475c;
+      --navy-dark: #26394d;
+      --teal: #0f766e;
+      --teal-light: #e8f4f2;
+      --ink: #273747;
+      --muted: #687989;
+      --line: #dce4e9;
+      --surface: #ffffff;
+      --background: #f4f7f9;
+      --soft: #edf2f5;
+      --shadow: 0 8px 28px rgba(35, 55, 75, 0.055);
+      --radius: 9px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* Top information bar */
+    .topbar {
+      background: var(--navy-dark);
+      color: #e6edf2;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      letter-spacing: 0.25px;
+    }
+
+    .topbar-inner {
+      min-height: 37px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .topbar-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topbar-item::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #43b5a6;
+      flex-shrink: 0;
+    }
+
+    .topbar-label {
+      color: #aebdc9;
+    }
+
+    /* Header and navigation */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-inner {
+      min-height: 91px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 47px;
+      height: 47px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 7px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.4;
+    }
+
+    .brand-name {
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-description {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
+      letter-spacing: 0.1px;
+    }
+
+    .navigation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 6px 13px;
+      border-radius: 30px;
+      color: #536476;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--teal);
+      background: var(--teal-light);
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: var(--teal);
+    }
+
+    .nav-editions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      background: #f0f3f6;
+      border-radius: 30px;
+    }
+
+    .nav-editions .nav-link {
+      min-height: 29px;
+      padding: 4px 10px;
+      font-size: 11px;
+    }
+
+    .nav-editions .nav-link.active {
+      background: var(--navy);
+    }
+
+    /* Main hero */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid var(--teal);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -190px;
+      width: 510px;
+      height: 510px;
+      border: 1px solid rgba(255,255,255,0.075);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 40px;
+      top: -110px;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(255,255,255,0.075);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding-top: 52px;
+      padding-bottom: 55px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #a9d9d2;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      margin-bottom: 17px;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: #36a99a;
+    }
+
+    .hero h1 {
+      max-width: 780px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(29px, 4vw, 42px);
+      line-height: 1.22;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+    }
+
+    .hero-description {
+      max-width: 750px;
+      margin: 20px 0 0;
+      color: #d2dce4;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* Main content */
+    .main-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 265px;
+      align-items: start;
+      gap: 27px;
+      padding-top: 37px;
+      padding-bottom: 55px;
+    }
+
+    .content-column {
+      min-width: 0;
+    }
+
+    .section {
+      margin-bottom: 26px;
+      padding: 27px 29px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 19px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--navy);
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .section-heading::before {
+      content: "";
+      width: 4px;
+      height: 21px;
+      border-radius: 3px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .section p {
+      margin: 0 0 15px;
+      color: #536476;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Editions table */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      margin-top: 20px;
+    }
+
+    .edition-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    .edition-table thead {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .edition-table th {
+      padding: 13px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .edition-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #e7edf1;
+      color: #536476;
+      vertical-align: middle;
+    }
+
+    .edition-table tbody tr {
+      background: #fff;
+      transition: background 0.15s;
+    }
+
+    .edition-table tbody tr:nth-child(even) {
+      background: #f7f9fa;
+    }
+
+    .edition-table tbody tr:hover {
+      background: #eef5f5;
+    }
+
+    .edition-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .edition-table td:first-child {
+      color: var(--navy);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .edition-table td:last-child {
+      text-align: center;
+      font-weight: 700;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .edition-note {
+      margin-top: 17px !important;
+      padding: 14px 16px;
+      border-left: 3px solid var(--teal);
+      background: #f0f6f5;
+      border-radius: 0 5px 5px 0;
+      color: #536476 !important;
+      font-size: 12px !important;
+    }
+
+    /* Highlights and keynote cards */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .highlight-card {
+      padding: 19px 19px 18px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      border-top: 3px solid var(--navy);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .highlight-card:hover {
+      border-top-color: var(--teal);
+      box-shadow: 0 5px 18px rgba(35, 55, 75, 0.07);
+    }
+
+    .highlight-card.keynote {
+      grid-column: 1 / -1;
+      background: #f7fafb;
+      border-top-color: var(--teal);
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 15px;
+      align-items: start;
+    }
+
+    .card-index {
+      width: 43px;
+      height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .card-label {
+      margin-bottom: 6px;
+      color: var(--teal);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .highlight-card h3 {
+      margin: 0 0 7px;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .highlight-card p strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      min-width: 0;
+    }
+
+    .sidebar-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .sidebar-heading {
+      padding: 14px 18px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .sidebar-body {
+      padding: 19px 18px;
+    }
+
+    .contact-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .email-link {
+      display: inline-block;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+      border-bottom: 1px solid #b6d7d2;
+      padding-bottom: 3px;
+    }
+
+    .email-link:hover {
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      margin: 17px 0;
+      background: var(--line);
+    }
+
+    .sidebar-note {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--navy-dark);
+      color: #b8c5cf;
+      border-top: 3px solid var(--teal);
+    }
+
+    .footer-main {
+      padding: 28px 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .footer-brand {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .footer-description {
+      margin-top: 4px;
+      color: #aebdc9;
+      font-size: 11px;
+    }
+
+    .footer-email {
+      color: #83c9be;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      padding: 13px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      color: #91a2b0;
+      font-size: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 950px) {
+      .header-inner {
+        padding: 16px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .navigation {
+        justify-content: flex-start;
+      }
+
+      .main-layout {
+        grid-template-columns: minmax(0, 1fr) 225px;
+        gap: 18px;
+      }
+
+      .section {
+        padding: 23px 22px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 30px, var(--max-width));
+      }
+
+      .topbar-inner {
+        padding: 8px 0;
+      }
+
+      .topbar-info {
+        gap: 8px 18px;
+      }
+
+      .topbar-label {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: auto;
+      }
+
+      .navigation {
+        gap: 4px;
+      }
+
+      .nav-link {
+        padding: 5px 10px;
+        font-size: 11px;
+      }
+
+      .nav-editions {
+        order: 2;
+      }
+
+      .hero-inner {
+        padding-top: 38px;
+        padding-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .main-layout {
+        grid-template-columns: 1fr;
+        padding-top: 23px;
+        gap: 0;
+      }
+
+      .section {
+        padding: 21px 18px;
+        margin-bottom: 19px;
+      }
+
+      .section-heading {
+        font-size: 18px;
+      }
+
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-card.keynote {
+        grid-column: auto;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .footer-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .brand-description {
+        max-width: 235px;
+      }
+
+      .nav-editions {
+        gap: 0;
+      }
+
+      .nav-editions .nav-link {
+        padding: 4px 7px;
+        font-size: 10px;
+      }
+
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .highlight-card.keynote {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 11px;
+      }
+
+      .card-index {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header><div class="wrap header-inner">
-  <div class="brand"><a href="index.html"><span class="brand-mark">ICTPM</span><span class="brand-sub">International Conference on Transport Planning and Mobility</span></a></div>
-  <nav><a href="index.html" class="active">Home</a><span class="tags">Editions</span><a href="2023/index.html">2023</a><a href="2024/index.html">2024</a><a href="2025/index.html">2025</a><a href="2026/index.html">2026</a><a href="tpc/index.html">TPC</a><a href="invited-talks/index.html">Invited Talks</a></nav>
-</div></header>
-<main><div class="wrap">
 
-<div class="hero">
-  <div class="dates">ICTPM 2026 &middot; 18 June 2026</div>
-  <h1>International Conference on Transport Planning and Mobility</h1>
-  <p>The fourth edition of ICTPM took place on 18 June 2026. The conference thanks all authors, committee members and attendees who contributed to this year&rsquo;s programme.</p>
-</div>
-<h2>About ICTPM</h2>
-<p>ICTPM is an annual international conference on transport planning and mobility, first held in Vienna in 2023. The conference brings together researchers and practitioners working on network planning, demand modelling, transit operations, investment appraisal and mobility analytics.</p>
-<p>Each edition is prepared by an independent programme committee and a small local team. The conference has met in a different host city every year:</p>
-<table>
-<tr><th>Edition</th><th>Dates</th><th>Location</th><th>Venue</th><th>Papers reviewed</th></tr>
-<tr><td><a href="2023/index.html">ICTPM 2023</a></td><td>14&ndash;16 June 2023</td><td>Vienna, Austria</td><td>Central Forum Congress Centre</td><td>41</td></tr>
-<tr><td><a href="2024/index.html">ICTPM 2024</a></td><td>12&ndash;14 June 2024</td><td>Prague, Czech Republic</td><td>Vltava Congress Centre</td><td>47</td></tr>
-<tr><td><a href="2025/index.html">ICTPM 2025</a></td><td>15 August 2025</td><td>Germany</td><td>Congress programme</td><td>52</td></tr>
-</table>
-<p><a href="2026/index.html">ICTPM 2026</a> took place on 18 June 2026; the programme, committee service and papers of the fourth edition are published on the edition page.</p>
-<h2>Highlights</h2>
-<ul>
-<li><a href="2025/keynote-yanxi-liu.html">ICTPM 2025 opening keynote</a> &mdash; &ldquo;Transport Ranking Stability&rdquo; by Ms. Yanxi Liu, National Transport Research Programme (NTRP).</li>
-<li><a href="tpc/index.html">Technical Program Committee</a> &mdash; standing committee and membership across editions.</li>
-<li><a href="invited-talks/index.html">Invited talks archive</a> &mdash; eleven invited lectures delivered by Ms. Yanxi Liu, 2024&ndash;2026.</li>
-</ul>
-<h2>Contact</h2>
-<p>General correspondence: <a href="mailto:secretariat@ictpm-conference.org">secretariat@ictpm-conference.org</a></p>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-info">
+        <span class="topbar-item">ICTPM 2025</span>
+        <span class="topbar-item">15 August 2025</span>
+        <span class="topbar-item">Germany</span>
+      </div>
+      <span class="topbar-label">International Academic Conference</span>
+    </div>
+  </div>
 
-</div></main>
-<footer><div class="wrap">
-  <span>&copy; 2023&ndash;2026 International Conference on Transport Planning and Mobility (ICTPM)</span>
-  <span>secretariat@ictpm-conference.org</span>
-</div></footer>
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a href="#home" class="brand">
+        <span class="brand-mark">ICTPM</span>
+        <span class="brand-copy">
+          <span class="brand-name">ICTPM</span>
+          <span class="brand-description">International Conference on Transport Planning and Mobility</span>
+        </span>
+      </a>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="#home" class="nav-link active">Home</a>
+
+        <div class="nav-editions">
+          <a href="#editions" class="nav-link">Editions</a>
+          <a href="#editions" class="nav-link">2023</a>
+          <a href="#editions" class="nav-link">2024</a>
+          <a href="#editions" class="nav-link">2025</a>
+          <a href="#editions" class="nav-link">2026</a>
+        </div>
+
+        <a href="#highlights" class="nav-link">TPC</a>
+        <a href="#highlights" class="nav-link">Invited Talks</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="home">
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-kicker">ICTPM 2026 &middot; 18 June 2026</div>
+
+        <h1>International Conference on Transport Planning and Mobility</h1>
+
+        <p class="hero-description">
+          The fourth edition of ICTPM took place on 18 June 2026. The conference thanks all authors, committee members and attendees who contributed to this year&rsquo;s programme.
+        </p>
+      </div>
+    </section>
+
+    <div class="container main-layout">
+
+      <div class="content-column">
+
+        <section class="section" id="about">
+          <h2 class="section-heading">About ICTPM</h2>
+
+          <p>
+            ICTPM is an annual international conference on transport planning and mobility, first held in Vienna in 2023. The conference brings together researchers and practitioners working on network planning, demand modelling, transit operations, investment appraisal and mobility analytics.
+          </p>
+
+          <p>
+            Each edition is prepared by an independent programme committee and a small local team. The conference has met in a different host city every year:
+          </p>
+        </section>
+
+        <section class="section" id="editions">
+          <h2 class="section-heading">Editions</h2>
+
+          <div class="table-wrapper">
+            <table class="edition-table">
+              <thead>
+                <tr>
+                  <th>Edition</th>
+                  <th>Dates</th>
+                  <th>Location</th>
+                  <th>Venue</th>
+                  <th>Papers reviewed</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>ICTPM 2023</td>
+                  <td>14&ndash;16 June 2023</td>
+                  <td>Vienna, Austria</td>
+                  <td>Central Forum Congress Centre</td>
+                  <td>41</td>
+                </tr>
+
+                <tr>
+                  <td>ICTPM 2024</td>
+                  <td>12&ndash;14 June 2024</td>
+                  <td>Prague, Czech Republic</td>
+                  <td>Vltava Congress Centre</td>
+                  <td>47</td>
+                </tr>
+
+                <tr>
+                  <td>ICTPM 2025</td>
+                  <td>15 August 2025</td>
+                  <td>Germany</td>
+                  <td>Congress programme</td>
+                  <td>52</td>
+                </tr>
+
+                <tr>
+                  <td>ICTPM 2026</td>
+                  <td colspan="3"> </td>
+                  <td> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="edition-note">
+            ICTPM 2026 took place on 18 June 2026; the programme, committee service and papers of the fourth edition are published on the edition page.
+          </p>
+        </section>
+
+        <section class="section" id="highlights">
+          <h2 class="section-heading">Highlights</h2>
+
+          <div class="highlights-grid">
+
+            <article class="highlight-card keynote">
+              <div class="card-index">01</div>
+              <div>
+                <div class="card-label">Keynote Lecture</div>
+                <h3>ICTPM 2025 opening keynote</h3>
+                <p>
+                  &mdash; &ldquo;Transport Ranking Stability&rdquo; by Ms. Yanxi Liu, National Transport Research Programme (NTRP).
+                </p>
+              </div>
+            </article>
+
+            <article class="highlight-card">
+              <div class="card-index">02</div>
+              <div class="card-label">Committee</div>
+              <h3>Technical Program Committee</h3>
+              <p>
+                &mdash; standing committee and membership across editions.
+              </p>
+            </article>
+
+            <article class="highlight-card">
+              <div class="card-index">03</div>
+              <div class="card-label">Academic Programme</div>
+              <h3>Invited talks archive</h3>
+              <p>
+                &mdash; eleven invited lectures delivered by Ms. Yanxi Liu, 2024&ndash;2026.
+              </p>
+            </article>
+
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="sidebar">
+
+        <section class="sidebar-card" id="contact">
+          <div class="sidebar-heading">Contact</div>
+          <div class="sidebar-body">
+            <div class="contact-label">General correspondence:</div>
+            <a class="email-link" href="mailto:secretariat@ictpm-conference.org">secretariat@ictpm-conference.org</a>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-note">
+              International Conference on Transport Planning and Mobility
+            </div>
+          </div>
+        </section>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-main">
+        <div>
+          <div class="footer-brand">ICTPM</div>
+          <div class="footer-description">
+            International Conference on Transport Planning and Mobility
+          </div>
+        </div>
+
+        <a class="footer-email" href="mailto:secretariat@ictpm-conference.org">
+          secretariat@ictpm-conference.org
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2023&ndash;2026 International Conference on Transport Planning and Mobility (ICTPM)</span>
+        <span>secretariat@ictpm-conference.org</span>
+      </div>
+
+    </div>
+  </footer>
+
 </body>
 </html>
